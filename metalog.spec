@@ -5,7 +5,7 @@ Version:	0.7beta
 Release:	1
 License:	GPL
 Group:		Daemons
-Source0:	http://prdownloads.sourceforge.net/metalog/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tgz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -13,8 +13,8 @@ URL:		http://metalog.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pcre-devel
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 Provides:	syslogdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	klogd
