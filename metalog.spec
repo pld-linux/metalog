@@ -15,6 +15,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pcre-devel
 Prereq:		/sbin/chkconfig
+Prereq:		rc-scripts
 Provides:	syslogdaemon	
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	klogd syslog syslog-ng
