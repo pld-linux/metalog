@@ -7,6 +7,7 @@ Epoch:          0
 License:	GPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tar.gz
+# Source0-md5:	40940eb9829de7d5776b9bbd514f9d7e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
