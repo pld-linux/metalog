@@ -64,8 +64,6 @@ install %{SOURCE1}      $RPM_BUILD_ROOT/etc/rc.d/init.d/metalog
 install %{SOURCE2}      $RPM_BUILD_ROOT/etc/sysconfig/metalog
 install %{SOURCE3}	$RPM_BUILD_ROOT%{_sysconfdir}/metalog.conf
 
-gzip -9nf README AUTHORS NEWS metalog.conf
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -87,7 +85,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README AUTHORS NEWS metalog.conf
 %attr(755,root,root) %{_sbindir}/metalog
 %attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/metalog.conf
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/metalog
