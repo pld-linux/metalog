@@ -5,8 +5,6 @@ Version:	0.6
 Release:	3
 License:	GPL
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/metalog/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
