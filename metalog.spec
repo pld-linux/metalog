@@ -1,11 +1,12 @@
 Summary:	An efficient alternative to syslogd
 Summary(pl):	Wydajny zamiennik syslogd
 Name:		metalog
-Version:	0.7beta
+Version:	0.7
 Release:	1
+Epoch:          0
 License:	GPL
 Group:		Daemons
-Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
