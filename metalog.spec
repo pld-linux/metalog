@@ -1,12 +1,13 @@
 Summary:	An efficient alternative to syslogd
+Summary(pl):	Wydajny zamiennik syslogd
 Name:		metalog	
 Version:	0.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
-Source0:	ftp://download.sourceforge.net/pub/sourceforge/metalog/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/metalog/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -29,6 +30,17 @@ External shell scripts (e.g., mail) can be launched when specific
 patterns are found. Metalog is easier to configure than syslogd and
 syslog-ng, accepts unlimited number of rules and has (switchable)
 memory bufferization for maximal performance.
+
+%description -l pl
+Metalog jest nowoczesnym zamiennikiem syslogd i klogd. Logowane
+komunikaty mog± byæ rozsy³ane zale¿nie od facility, wagi, priorytetu,
+nazwy programu i/lub perlowych wyra¿eñ regularnych. Pliki logów mog±
+podlegaæ automatycznej rotacji kiedy przekrocz± okre¶lony rozmiar lub
+wiek. Zewnêtrzne skrypty shellowe (np. poczta) mog± byæ uruchamiane
+przy znalezieniu okre¶lonych wzorców. Metalog jest ³atwiejszy do
+skonfigurowania ni¿ syslogd i syslog-ng, akceptuje nieskoñczon± liczbê
+regu³ek i ma (prze³±czalne) buforowanie pamiêci dla osi±gniêcia
+najwy¿szej wydajno¶ci.
 
 %prep
 %setup -q 
