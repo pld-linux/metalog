@@ -1,7 +1,7 @@
 Summary:	An efficient alternative to syslogd
 Name:		metalog	
 Version:	0.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Daemons
 Group(de):	Server
@@ -14,6 +14,7 @@ URL:		http://metalog.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pcre-devel
+Prereq:		/sbin/chkconfig
 Provides:	syslogdaemon	
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	klogd syslog syslog-ng
@@ -52,6 +53,9 @@ install %{SOURCE3}	$RPM_BUILD_ROOT%{_sysconfdir}/metalog.conf
 
 gzip -9nf README AUTHORS NEWS metalog.conf 
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 /sbin/chkconfig --add metalog
 if [ -f /var/lock/subsys/metalog ]; then
@@ -67,10 +71,6 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del metalog 
 fi
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
