@@ -21,6 +21,7 @@ if [ -f /etc/sysconfig/metalog ] ; then
 	. /etc/sysconfig/metalog
 fi
 
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -41,33 +42,30 @@ case "$1" in
 		rm -f /var/lock/subsys/metalog >/dev/null 2>&1
 	else
 		msg_not_running metalog
-		exit 1
 	fi	
 	;;
   status)
 	status metalog
+	exit $?
 	;;
   restart)
 	$0 stop
 	$0 start
+	exit $?
 	;;
-  reload)
+  reload|force-reload)
 	if [ -f /var/lock/subsys/metalog ]; then
 		msg_reloading "metalog"
 		killproc metalog -HUP
 		RETVAL=$?
 	else
-		msg_not_running metalog
-		exit 1
+		msg_not_running metalog >&2
+		exit 7
 	fi
-	;;
-  force-reload)
-	$0 reload
-	exit $?
 	;;
   *)
 	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
-	exit 1
+	exit 3
 esac
 
 exit $RETVAL
