@@ -1,6 +1,6 @@
 Summary:	An efficient alternative to syslogd
 Summary(pl):	Wydajny zamiennik syslogd
-Name:		metalog	
+Name:		metalog
 Version:	0.6
 Release:	3
 License:	GPL
@@ -15,7 +15,7 @@ BuildRequires:	automake
 BuildRequires:	pcre-devel
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts
-Provides:	syslogdaemon	
+Provides:	syslogdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	klogd syslog syslog-ng
 
@@ -41,7 +41,7 @@ regu³ek i ma (prze³±czalne) buforowanie pamiêci dla osi±gniêcia
 najwy¿szej wydajno¶ci.
 
 %prep
-%setup -q 
+%setup -q
 
 %build
 rm -f missing
@@ -56,13 +56,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/{rc.d/init.d,sysconfig},%{_sbindir},%{_mandir}/man8,}
 
 install	src/metalog 	$RPM_BUILD_ROOT%{_sbindir}
-install man/metalog.8*	$RPM_BUILD_ROOT%{_mandir}/man8	
+install man/metalog.8*	$RPM_BUILD_ROOT%{_mandir}/man8
 
 install %{SOURCE1}      $RPM_BUILD_ROOT/etc/rc.d/init.d/metalog
 install %{SOURCE2}      $RPM_BUILD_ROOT/etc/sysconfig/metalog
 install %{SOURCE3}	$RPM_BUILD_ROOT%{_sysconfdir}/metalog.conf
 
-gzip -9nf README AUTHORS NEWS metalog.conf 
+gzip -9nf README AUTHORS NEWS metalog.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,12 +80,12 @@ if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/metalog ]; then
 		/etc/rc.d/init.d/metalog stop >&2
 	fi
-	/sbin/chkconfig --del metalog 
+	/sbin/chkconfig --del metalog
 fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz 
+%doc *.gz
 %attr(755,root,root) %{_sbindir}/metalog
 %attr(640,root,root) %config %verify(not size mtime md5) %{_sysconfdir}/metalog.conf
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/metalog
