@@ -35,7 +35,7 @@ case "$1" in
 		msg_already_running "metalog"
 	fi
 	;;
-  stop)	
+  stop)
 	if [ -f /var/lock/subsys/metalog ]; then
 		msg_stopping "metalog"
 		killproc metalog
