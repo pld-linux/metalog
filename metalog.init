@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# metalog        Starts metalog (syslogd replacment).
+# metalog	Starts metalog (syslogd replacment).
 #
 # chkconfig:	2345 30 70
 # description:	Syslog is the facility by which many daemons use to log \
@@ -18,7 +18,7 @@
 
 # Get service config
 if [ -f /etc/sysconfig/metalog ] ; then
-        . /etc/sysconfig/metalog
+	. /etc/sysconfig/metalog
 fi
 
 # See how we were called.
@@ -31,16 +31,16 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/metalog
 	else
-		msg_Already_Running "metalog"
+		msg_already_running "metalog"
 	fi
 	;;
-    stop)	
+  stop)	
 	if [ -f /var/lock/subsys/metalog ]; then
 		msg_stopping "metalog"
 		killproc metalog
 		rm -f /var/lock/subsys/metalog >/dev/null 2>&1
 	else
-		msg_Not_Running metalog
+		msg_not_running metalog
 		exit 1
 	fi	
 	;;
@@ -54,9 +54,12 @@ case "$1" in
   reload)
 	if [ -f /var/lock/subsys/metalog ]; then
 		msg_reloading "metalog"
+		busy
 		killproc metalog -HUP
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && ok || died
 	else
-		msg_Not_Running metalog
+		msg_not_running metalog
 		exit 1
 	fi
 	;;
@@ -65,7 +68,7 @@ case "$1" in
 	exit $?
 	;;
   *)
-	msg_Usage "$0 {start|stop|status|restart|reload|force-reload}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 1
 esac
 
