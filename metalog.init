@@ -17,7 +17,7 @@
 [ -f /etc/metalog.conf ] || exit 0
 
 # Get service config
-if [ -f /etc/sysconfig/metalog ] ; then
+if [ -f /etc/sysconfig/metalog ]; then
 	. /etc/sysconfig/metalog
 fi
 
