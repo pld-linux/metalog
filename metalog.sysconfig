@@ -1,0 +1,5 @@
+# sysconfig metalog
+
+# Define nice level for nscd 
+SERVICE_RUN_NICE_LEVEL="+0"
+OPTIONS="-B"

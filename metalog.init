@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# metalog        Starts metalog (syslogd replacment).
+#
+# chkconfig:	2345 30 70
+# description:	Syslog is the facility by which many daemons use to log \
+#		messages to various system log files. It is a good idea to \
+#		always run syslog.
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+[ -f /usr/sbin/metalog ] || exit 0
+[ -f /etc/metalog.conf ] || exit 0
+
+# Get service config
+if [ -f /etc/sysconfig/metalog ] ; then
+        . /etc/sysconfig/metalog
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/metalog ]; then
+		msg_starting "metalog"
+		daemon metalog $OPTIONS
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/metalog
+	else
+		msg_Already_Running "metalog"
+	fi
+	;;
+    stop)	
+	if [ -f /var/lock/subsys/metalog ]; then
+		msg_stopping "metalog"
+		killproc metalog
+		rm -f /var/lock/subsys/metalog >/dev/null 2>&1
+	else
+		msg_Not_Running metalog
+		exit 1
+	fi	
+	;;
+  status)
+	status metalog
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  reload)
+	if [ -f /var/lock/subsys/metalog ]; then
+		msg_reloading "metalog"
+		killproc metalog -HUP
+	else
+		msg_Not_Running metalog
+		exit 1
+	fi
+	;;
+  force-reload)
+	$0 reload
+	exit $?
+	;;
+  *)
+	msg_Usage "$0 {start|stop|status|restart|reload|force-reload}"
+	exit 1
+esac
+
+exit $RETVAL
