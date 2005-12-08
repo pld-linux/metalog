@@ -39,7 +39,7 @@ case "$1" in
 		rm -f /var/lock/subsys/metalog >/dev/null 2>&1
 	else
 		msg_not_running metalog
-	fi	
+	fi
 	;;
   status)
 	status metalog
