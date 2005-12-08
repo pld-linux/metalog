@@ -10,9 +10,6 @@
 # Source function library
 . /etc/rc.d/init.d/functions
 
-# Get network config
-. /etc/sysconfig/network
-
 [ -f /usr/sbin/metalog ] || exit 0
 [ -f /etc/metalog.conf ] || exit 0
 
