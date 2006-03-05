@@ -15,13 +15,14 @@ URL:		http://metalog.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	pcre-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 Provides:	syslogdaemon
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	klogd
 Obsoletes:	syslog
 Obsoletes:	syslog-ng
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Metalog is a modern replacement for syslogd and klogd. The logged
@@ -71,17 +72,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add metalog
-if [ -f /var/lock/subsys/metalog ]; then
-	/etc/rc.d/init.d/metalog restart &>/dev/null
-else
-	echo "Run \"/etc/rc.d/init.d/metalog start\" to start metalog daemon."
-fi
+%service metalog restart "metalog daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/metalog ]; then
-		/etc/rc.d/init.d/metalog stop >&2
-	fi
+	%service metalog stop
 	/sbin/chkconfig --del metalog
 fi
 
