@@ -2,7 +2,7 @@ Summary:	An efficient alternative to syslogd
 Summary(pl):	Wydajny zamiennik syslogd
 Name:		metalog
 Version:	0.7
-Release:	1
+Release:	2
 Epoch:		0
 License:	GPL
 Group:		Daemons
