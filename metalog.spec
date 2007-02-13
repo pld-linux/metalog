@@ -1,5 +1,5 @@
 Summary:	An efficient alternative to syslogd
-Summary(pl.UTF-8):   Wydajny zamiennik syslogd
+Summary(pl.UTF-8):	Wydajny zamiennik syslogd
 Name:		metalog
 Version:	0.7
 Release:	2
