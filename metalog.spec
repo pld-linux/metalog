@@ -2,7 +2,7 @@ Summary:	An efficient alternative to syslogd
 Summary(pl.UTF-8):	Wydajny zamiennik syslogd
 Name:		metalog
 Version:	0.7
-Release:	2
+Release:	3
 Epoch:		0
 License:	GPL
 Group:		Daemons
@@ -20,8 +20,8 @@ Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 Provides:	syslogdaemon
 Obsoletes:	klogd
-Obsoletes:	syslog
-Obsoletes:	syslog-ng
+Conflicts:	syslog
+Conflicts:	syslog-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
