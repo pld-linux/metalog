@@ -19,7 +19,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 Provides:	syslogdaemon
-Obsoletes:	klogd
+Conflicts:	klogd
 Conflicts:	syslog
 Conflicts:	syslog-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
