@@ -1,19 +1,20 @@
 Summary:	An efficient alternative to syslogd
 Summary(pl.UTF-8):	Wydajny zamiennik syslogd
 Name:		metalog
-Version:	0.7
-Release:	3
+Version:	1
+Release:	1
 Epoch:		0
-License:	GPL
+License:	GPL v2+
 Group:		Daemons
-Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tar.gz
-# Source0-md5:	40940eb9829de7d5776b9bbd514f9d7e
+Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tar.lzma
+# Source0-md5:	df4ec89f6a0df24a43f9592ee80ab6be
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
 URL:		http://metalog.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	lzma >= 1:4.42
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
@@ -46,11 +47,12 @@ regułek i ma (przełączalne) buforowanie pamięci dla osiągnięcia
 najwyższej wydajności.
 
 %prep
-%setup -q
+%setup -q -c -T
+%{__lzma} -dc %{SOURCE0} | %{__tar} xf - -C ..
 
 %build
 rm -f missing
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure
@@ -87,4 +89,4 @@ fi
 %attr(640,root,root) %config %verify(not md5 mtime size) %{_sysconfdir}/metalog.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/metalog
 %attr(754,root,root) /etc/rc.d/init.d/metalog
-%{_mandir}/man8/*
+%{_mandir}/man8/metalog.8*
