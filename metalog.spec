@@ -3,7 +3,6 @@ Summary(pl.UTF-8):	Wydajny zamiennik syslogd
 Name:		metalog
 Version:	1
 Release:	1
-Epoch:		0
 License:	GPL v2+
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/metalog/%{name}-%{version}.tar.lzma
