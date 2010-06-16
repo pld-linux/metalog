@@ -14,9 +14,9 @@ Source3:	%{name}.conf
 URL:		http://metalog.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	lzma >= 1:4.42
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	tar >= 1:1.22
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 Provides:	syslogdaemon
