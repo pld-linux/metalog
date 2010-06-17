@@ -46,8 +46,7 @@ regułek i ma (przełączalne) buforowanie pamięci dla osiągnięcia
 najwyższej wydajności.
 
 %prep
-%setup -q -c -T
-%{__lzma} -dc %{SOURCE0} | %{__tar} xf - -C ..
+%setup -q
 
 %build
 rm -f missing
